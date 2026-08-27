@@ -17,9 +17,13 @@ Read-only annotations are used for status, inspection, and export. WebMCP AbortS
 
 The built-in `/demo-store` intentionally lacks stale `#checkout-submit` and exposes stable `[data-testid="checkout-submit"]`. Create a test, start it, observe `failed_recoverable`, inspect evidence, retry the verified fallback, confirm `Order confirmed · FP-2048`, then export the recovered Playwright regression. The fallback is exposed only when actual page inventory proves it exists.
 
+Production demo: `https://flowproof-production-e9fd.up.railway.app`
+
 ## Architecture
 
 Go owns configuration, target safety, JSON persistence, chromedp execution, run orchestration, HTTP API, demo target, and static SPA serving. React/TypeScript owns the operations dashboard, typed same-origin API client, and WebMCP registration.
+
+The production Linux container is built by GitHub Actions, published as `ghcr.io/duclucky/flowproof-agent:latest`, and deployed on Railway.
 
 ## Safety
 
@@ -85,9 +89,9 @@ The multi-stage image builds Vite and Go, installs Chromium, serves `web/dist`, 
 - 2:10-2:35: export Playwright regression using the recovered selector.
 - 2:35-2:55: close on deterministic safety, human/agent shared state, and reusable regression value.
 
-## Submission checklist
+## Submission status
 
-Before submission: create a public repository with the root license visible, deploy a working public URL, publish a public YouTube demo under three minutes, and keep the app available through judging. These publication steps are intentionally not performed by the local build.
+The public repository, MIT license, production Railway URL, GHCR image, and full public create → fail → inspect → retry → success → export acceptance are complete. Remaining submission work is a WebMCP-enabled browser proof, the public YouTube demo under three minutes, and the final Devpost entry. Keep the production app available through judging.
 
 ## License
 

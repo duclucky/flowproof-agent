@@ -1,8 +1,8 @@
-# FlowProof — WebMCP Challenge Submission Draft
+# FlowProof ΓÇö WebMCP Challenge Submission Draft
 
 ## Project title
 
-FlowProof — Agent-native browser QA
+FlowProof ΓÇö Agent-native browser QA
 
 ## One-line pitch
 
@@ -38,6 +38,7 @@ If the browser does not expose `document.modelContext`, the same dashboard remai
 - React + TypeScript + Vite for the operations dashboard and WebMCP registration.
 - JSON persisted run state for the contest demo.
 - Docker packaging with Chromium installed and an unprivileged runtime user.
+- GitHub Actions publishes the production container to GHCR; Railway runs the published image.
 
 ## Safety model
 
@@ -56,7 +57,7 @@ FlowProof is not a general-purpose remote browser executor. HTTP/HTTPS targets o
 ## Links
 
 - Source repository: https://github.com/duclucky/flowproof-agent
-- Live app: TBD
+- Live app: https://flowproof-production-e9fd.up.railway.app
 - Demo video: TBD
 
 ## License
