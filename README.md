@@ -91,7 +91,7 @@ The multi-stage image builds Vite and Go, installs Chromium, serves `web/dist`, 
 
 ## Submission status
 
-The public repository, MIT license, production Railway URL, GHCR image, and full public create → fail → inspect → retry → success → export acceptance are complete. Remaining submission work is a WebMCP-enabled browser proof, the public YouTube demo under three minutes, and the final Devpost entry. Keep the production app available through judging.
+The public repository, MIT license, production Railway URL, GHCR image, full public create → fail → inspect → retry → success → export acceptance, and native six-tool WebMCP proof in Chrome 151 are complete. Remaining submission work is the public YouTube demo under three minutes and the final Devpost entry. Keep the production app available through judging.
 
 ## License
 

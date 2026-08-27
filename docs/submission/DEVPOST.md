@@ -1,8 +1,8 @@
-# FlowProof ΓÇö WebMCP Challenge Submission Draft
+# FlowProof — WebMCP Challenge Submission Draft
 
 ## Project title
 
-FlowProof ΓÇö Agent-native browser QA
+FlowProof — Agent-native browser QA
 
 ## One-line pitch
 
@@ -28,6 +28,8 @@ FlowProof intentionally does not put another LLM inside the application. The ext
 ## How WebMCP is used
 
 FlowProof uses the current imperative WebMCP surface, `document.modelContext.registerTool(...)`. Each tool has a narrow JSON schema and maps to a concrete backend operation. Read-only annotations are used for status, failure inspection, and regression export. The `AbortSignal` supplied by WebMCP is forwarded to backend requests.
+
+The public Railway deployment was verified in Google Chrome 151 with WebMCP testing enabled. Chrome exposed `document.modelContext`, enumerated exactly the six FlowProof tools, and executed the complete native create → start → status → inspect → retry → export workflow against the production app. The retry reached `succeeded`, and the exported Playwright test contained the recovered selector plus the `Order confirmed` assertion.
 
 If the browser does not expose `document.modelContext`, the same dashboard remains usable in manual mode so the product is still inspectable without hiding the WebMCP dependency.
 

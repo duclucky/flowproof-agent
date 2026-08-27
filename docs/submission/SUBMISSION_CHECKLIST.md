@@ -1,4 +1,4 @@
-# FlowProof ΓÇö Submission Checklist
+# FlowProof — Submission Checklist
 
 ## Product
 
@@ -22,10 +22,12 @@ Production acceptance on 2026-08-27 used run `run-cd0b5bef534f70d8`: the real Ch
 
 ## WebMCP browser proof
 
-- [ ] Open the public app in a Chrome build/profile exposing `document.modelContext`.
-- [ ] Verify exactly six FlowProof tools register.
-- [ ] Exercise at least one tool from the browser agent surface.
-- [ ] Capture clean evidence for the demo video.
+- [x] Open the public app in Chrome 151.0.7922.174 with WebMCP testing enabled and verify `document.modelContext` is exposed.
+- [x] Verify exactly six FlowProof tools register.
+- [x] Exercise the complete six-tool workflow through the native WebMCP testing surface.
+- [x] Capture clean production evidence for the demo video.
+
+Native production proof on 2026-08-27 used run `run-3b79d6882ff40c92`: Chrome enumerated exactly six FlowProof tools, `start_run` produced the intended `failed_recoverable` state, `get_run_status` returned the persisted timeline/evidence, `inspect_failure` returned the DOM-proven fallback, `retry_failed_step` reached `succeeded`, and `export_regression_test` returned Playwright code containing the recovered selector and `Order confirmed` assertion.
 
 ## Video
 
@@ -46,4 +48,4 @@ Production acceptance on 2026-08-27 used run `run-cd0b5bef534f70d8`: the real Ch
 
 ## Deployment status
 
-Railway production is live from the public GHCR image `ghcr.io/duclucky/flowproof-agent:latest`. Railway's source/snapshot build path failed before Dockerfile execution at the Metal builder scheduling stage, so the build was moved to GitHub Actions and the resulting image was deployed directly. GitHub Actions run `33057258565` succeeded, and Railway deployment `20500250-1b7f-42bb-963f-5ce7781b641a` reached `SUCCESS` with image digest `sha256:e8f8fd4b060fdee45b9c44e0c0ae83851b31cca4b8f2d4c6f675c1b68f01b781`.
+Railway production runs the public GHCR image `ghcr.io/duclucky/flowproof-agent:latest`. GitHub Actions run `33064211227` published the WebMCP compatibility fix from commit `1d325ee`, and Railway deployment `d12d04fe-796b-4884-a0ca-f448dcd28b86` reached Online. The public deployment then passed the full six-tool native WebMCP lifecycle in Chrome 151.
