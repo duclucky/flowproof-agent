@@ -24,10 +24,17 @@ interface APIErrorPayload {
 
 export class HTTPFlowProofClient implements FlowProofClient {
   async createTest(input: CreateTestInput, signal?: AbortSignal): Promise<TestDefinition> {
+    let targetUrl = input.targetUrl;
+    try {
+      new URL(targetUrl);
+    } catch {
+      targetUrl = new URL(targetUrl, window.location.origin).toString();
+    }
+
     return requestJSON<TestDefinition>('/api/tests', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(input),
+      body: JSON.stringify({ ...input, targetUrl }),
       signal,
     });
   }
