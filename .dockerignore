@@ -1,0 +1,10 @@
+.git
+.supercode
+web/node_modules
+web/dist
+data
+*.log
+flowproof
+flowproof.exe
+server
+server.exe
