@@ -4,7 +4,7 @@ data/
 *.log
 flowproof
 flowproof.exe
-server
+/server
 server.exe
 .supercode/
 .DS_Store

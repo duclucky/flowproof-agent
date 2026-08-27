@@ -6,5 +6,4 @@ data
 *.log
 flowproof
 flowproof.exe
-server
 server.exe
