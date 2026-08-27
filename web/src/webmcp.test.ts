@@ -13,7 +13,7 @@ type RegisteredTool = {
     additionalProperties?: boolean;
   };
   annotations?: { readOnlyHint?: boolean; untrustedContentHint?: boolean };
-  execute: (input: Record<string, string>, context: { signal: AbortSignal }) => Promise<string>;
+  execute: (input: Record<string, string>, context?: { signal: AbortSignal }) => Promise<string>;
 };
 
 type TestDocument = Document & {
@@ -95,6 +95,19 @@ describe('registerFlowProofTools', () => {
     expect(client.inspectFailure).toHaveBeenCalledWith('run-1', controller.signal);
     expect(client.retryRun).toHaveBeenCalledWith('run-1', controller.signal);
     expect(client.exportRun).toHaveBeenCalledWith('run-1', controller.signal);
+  });
+
+  it('executes when Chrome omits the WebMCP execution context', async () => {
+    const registered: RegisteredTool[] = [];
+    Object.defineProperty(document, 'modelContext', {
+      configurable: true,
+      value: { registerTool: (tool: RegisteredTool) => registered.push(tool) },
+    });
+    const client = fakeClient();
+    await registerFlowProofTools(client);
+
+    await expect(toolByName(registered, 'get_run_status').execute({ runId: 'run-1' })).resolves.toContain('failed_recoverable');
+    expect(client.getRun).toHaveBeenCalledWith('run-1', undefined);
   });
 
   it('degrades cleanly when document.modelContext is unavailable', async () => {

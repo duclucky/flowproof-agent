@@ -23,7 +23,7 @@ interface ToolDefinition {
   description: string;
   inputSchema: ToolSchema;
   annotations: { readOnlyHint: boolean; untrustedContentHint: false };
-  execute: (input: Record<string, string>, context: { signal: AbortSignal }) => Promise<string>;
+  execute: (input: Record<string, string>, context?: { signal: AbortSignal }) => Promise<string>;
 }
 
 interface ModelContextLike {
@@ -108,14 +108,14 @@ function tool(
   description: string,
   inputSchema: ToolSchema,
   readOnlyHint: boolean,
-  execute: (input: Record<string, string>, signal: AbortSignal) => Promise<unknown>,
+  execute: (input: Record<string, string>, signal?: AbortSignal) => Promise<unknown>,
 ): ToolDefinition {
   return {
     name,
     description,
     inputSchema,
     annotations: { readOnlyHint, untrustedContentHint: false },
-    execute: async (input, { signal }) => JSON.stringify(await execute(input, signal)),
+    execute: async (input, context) => JSON.stringify(await execute(input, context?.signal)),
   };
 }
 
